@@ -7,7 +7,7 @@ class Input extends Component {
   constructor(props) {
     super(props);
     this.state = { isFocused: false };
-    this.onChange = debounce(value => props.onChange(value), 42);
+    this.onChange = debounce(value => props.onChange(value), 20);
     this.handleOnChange = this.handleOnChange.bind(this);
   }
 

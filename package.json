@@ -21,6 +21,7 @@
     "copy": "yarn run cp-index && yarn run cp-favicon && webpack",
     "prep": "rm -rf dist && mkdir dist && yarn run copy",
     "start": "yarn run prep && webpack-dev-server --inline",
+    "deploy": "yarn run prep && NODE_ENV=production node node_modules/.bin/webpack && firebase deploy",
     "test": "jest",
     "test:watch": "yarn run test -- --watch"
   },

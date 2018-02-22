@@ -5,6 +5,7 @@ import {
   UPDATE_GROUP_PRICE,
   UPDATE_BONUS,
   UPDATE_DISCOUNT,
+  CASCADE_UPDATE_BONUS_AND_DISCOUNT,
   RECEIVE_FIELD_VALUE
 } from './actionTypes';
 import {
@@ -53,6 +54,12 @@ const pricingFormReducer = (state = initialState, action) => {
         discount: action.discount,
         bonus: `${calcBonusFromDiscount(action.discount)}` || '',
         editedFieldsHistory: lastEditedTuple(distinctUntilChanged(state.editedFieldsHistory, 'discount')),
+      };
+    case CASCADE_UPDATE_BONUS_AND_DISCOUNT:
+      return {
+        ...state,
+        bonus: action.bonus,
+        discount: `${calcDiscountFromBonus(action.bonus)}` || '',
       };
     case RECEIVE_FIELD_VALUE:
       return {

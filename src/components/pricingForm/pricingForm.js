@@ -15,8 +15,8 @@ class PricingForm extends Component {
         <form>
           {
             [
-              { name: 'Public Price', inputFormat: /^\d{1,6}$/ },
-              { name: 'Group Price', inputFormat: /^\d{1,6}$/ },
+              { name: 'Public Price', inputFormat: /^(\d{1,6})(\.\d{0,18})?$/ },
+              { name: 'Group Price', inputFormat: /^(\d{1,6})(\.\d{0,18})?$/ },
               { name: 'Bonus', inputFormat: /^(([0-9]|[1-9][0-9])(\.\d{0,2})?|100)$/ },
               { name: 'Discount', inputFormat: /^([0-9]|[1-9][0-9])(\.\d{0,2})?$/ },
             ].map((field, idx) => (

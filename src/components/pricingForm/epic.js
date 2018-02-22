@@ -2,7 +2,8 @@ import Rx from 'rxjs/Rx';
 
 import {
   COMPUTE_FIELD,
-  RECEIVE_FIELD_VALUE
+  RECEIVE_FIELD_VALUE,
+  CASCADE_UPDATE_BONUS_AND_DISCOUNT
 } from './actionTypes';
 import {
   areReagentsIncomputable,
@@ -11,21 +12,25 @@ import {
   paramsToOutputHash
 } from '../../utils';
 
-const receiveFieldValue = action => ({
-  type: RECEIVE_FIELD_VALUE,
-  ...action,
-});
+const receiveFieldValue = action => (
+  action.bonus ?
+    { type: CASCADE_UPDATE_BONUS_AND_DISCOUNT, bonus: action.bonus } :
+    { type: RECEIVE_FIELD_VALUE, ...action }
+);
 
 const computeFieldValueEpic = (action$, store) =>
   action$.ofType(COMPUTE_FIELD)
-    .debounceTime(42)
+    .debounceTime(20)
     .switchMap(() => {
       const { pricingForm } = store.getState();
       const { editedFieldsHistory } = pricingForm;
 
       if (
         editedFieldsHistory.length < 2 ||
-        areReagentsIncomputable(editedFieldsHistory)
+        areReagentsIncomputable(editedFieldsHistory) ||
+        // Prevent calculation if we type into a field and then delete value
+        !pricingForm[editedFieldsHistory[0]].length ||
+        !pricingForm[editedFieldsHistory[1]].length
       ) {
         return Rx.Observable.from(['']).ignoreElements();
       }
