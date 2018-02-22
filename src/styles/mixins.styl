@@ -1,0 +1,27 @@
+truncate(w)
+  width w
+  white-space nowrap
+  overflow hidden
+  text-overflow ellipsis
+
+noSelect =
+  user-select none
+  -webkit-user-select none
+
+devmode =
+  border 1px dotted $sunset
+  background rgba($blush, 0.1)
+
+.hide
+  display none
+
+@keyframes fadeInFromNone
+  0%
+    display none
+    opacity 0
+  1%
+    display block
+    opacity 0
+  100%
+    display block
+    opacity 1

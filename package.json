@@ -1,0 +1,64 @@
+{
+  "name": "token-sale-pricing-form",
+  "version": "0.0.1",
+  "description": "Token Sale Pricing Form",
+  "main": "index.js",
+  "author": "Nima Mehanian",
+  "license": "MIT",
+  "private": true,
+  "babel": {
+    "presets": [
+      "env",
+      "react"
+    ],
+    "plugins": [
+      "transform-object-rest-spread"
+    ]
+  },
+  "scripts": {
+    "cp-index": "cp src/index.html dist",
+    "cp-favicon": "cp src/images/favicon.png dist",
+    "copy": "yarn run cp-index && yarn run cp-favicon && webpack",
+    "prep": "rm -rf dist && mkdir dist && yarn run copy",
+    "start": "yarn run prep && webpack-dev-server --inline",
+    "test": "jest",
+    "test:watch": "yarn run test -- --watch"
+  },
+  "dependencies": {
+    "classnames": "2.2.5",
+    "history": "4.7.2",
+    "lodash": "4.17.5",
+    "prop-types": "15.6.0",
+    "react": "16.2.0",
+    "react-dom": "16.2.0",
+    "react-redux": "5.0.7",
+    "react-router-dom": "4.2.2",
+    "react-router-redux": "5.0.0-alpha.8",
+    "react-text-mask": "5.1.0",
+    "redux": "3.7.2",
+    "redux-observable": "0.18.0",
+    "rxjs": "5.5.6"
+  },
+  "devDependencies": {
+    "babel-core": "6.26.0",
+    "babel-loader": "7.1.2",
+    "babel-plugin-transform-object-rest-spread": "6.26.0",
+    "babel-preset-env": "1.6.1",
+    "babel-preset-react": "6.24.1",
+    "css-loader": "0.28.9",
+    "eslint": "4.18.1",
+    "eslint-config-airbnb": "16.1.0",
+    "eslint-plugin-import": "2.8.0",
+    "eslint-plugin-jsx-a11y": "6.0.3",
+    "eslint-plugin-react": "7.7.0",
+    "file-loader": "1.1.8",
+    "jest": "22.4.0",
+    "path": "0.12.7",
+    "style-loader": "0.20.2",
+    "stylus": "0.54.5",
+    "stylus-loader": "3.0.1",
+    "url-loader": "0.6.2",
+    "webpack": "3.11.0",
+    "webpack-dev-server": "2.11.1"
+  }
+}
